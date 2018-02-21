@@ -4,14 +4,16 @@ const InternalServerError = require('../lib/errors/InternalServerError');
 const Topic = require('../lib/topic');
 
 
-// POST /auth/login
-exports.login = login;
+const auth = {};
 
-// // GET /auth/logout
-// exports.logout = logout;
+auth.login = (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
 
-// // POST /auth/reload
-// exports.reload = reload;
+}
+
+
+export default auth;
 
 
 /**
@@ -23,8 +25,7 @@ exports.login = login;
  * exist in the database, then verifies that the user has permission to access
  * the database all enterprise, project, and user data for easy access.
  */
-function login(req, res, next) {
-  const username = req.body.username;
-  const password = req.body.password;
+// function login(req, res, next) {
+ 
 
-}
+// }

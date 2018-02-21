@@ -15,11 +15,11 @@ const debug = require('debug')('app');
 const upload = require('../lib/uploader');
 
 // unclassified routes
-const auth = require('../controllers/auth');
+import auth from '../controllers/auth';
 
 // expose routes to the server.
 exports.configure = function configure(app) {
 
-  app.post('/auth/login', auth.login);
+  app.post('/auth/login',auth.login);
 
 };
