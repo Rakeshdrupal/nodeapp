@@ -5,17 +5,6 @@ const Topic = require('../lib/topic');
 
 
 const auth = {};
-
-auth.login = (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-
-}
-
-
-export default auth;
-
-
 /**
  * @method login
  *
@@ -25,7 +14,27 @@ export default auth;
  * exist in the database, then verifies that the user has permission to access
  * the database all enterprise, project, and user data for easy access.
  */
-// function login(req, res, next) {
- 
+auth.login = (req, res,next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const projectId = req.body.project;
+  const param = {};
 
-// }
+  const sql = `Select id from users`;
+
+
+  db.exec(sql)
+    .then((rows) => {
+       res.status(200).json(rows);
+    })
+    
+      // send the session data back to the client
+     
+    .catch(next)
+    .done();
+
+}
+
+
+export default auth;
+

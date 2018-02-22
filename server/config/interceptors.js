@@ -53,7 +53,7 @@ const SQL_STATES = {
  *
  * This error handler interprets all errors and sends them to the client.
  */
-exports.handler = function handler(err, req, res, next) {
+exports.handler = function handler(err,req, res, next) {
   let error = err;
 
   // log the error to the error log (NOTE: in production, this should be 'error')
@@ -78,6 +78,7 @@ exports.handler = function handler(err, req, res, next) {
     }
     error = new BadRequest(description, key);
   }
+  debug(error);
 
   // prevent invalid http error codes.
   if (!error.status) { error.status = 500; }

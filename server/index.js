@@ -12,20 +12,25 @@ import http from 'http';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+const session  = require('express-session');
 import passport from 'passport';
+const LocalStrategy   = require('passport-local').Strategy;
+
+const SERVER_SECRET = 'ohgodpleasenobug';
+//Configure passport middleware
+require('./config/passport')(passport,LocalStrategy);
 
 const app = express();
 const port = process.env.PORT;
 const mode = process.env.NODE_ENV;
-
 // Configure application middleware stack, inject authentication session
 require('./config/express').configure(app,passport);
 
 // Link routes
-require('./config/routes').configure(app,passport);
+require('./config/routes').configure(app,passport,SERVER_SECRET);
 
-// link error handling
-require('./config/express').errorHandling(app,passport);
+// // link error handling
+require('./config/express').errorHandling(app);
 app.server = http
     .createServer(app)
     .listen(process.env.PORT, () => {

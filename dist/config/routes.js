@@ -1,3 +1,11 @@
+'use strict';
+
+var _auth = require('../controllers/auth');
+
+var _auth2 = _interopRequireDefault(_auth);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /**
  * @overview routes
  * Application Routing
@@ -11,18 +19,11 @@
  * @requires uploader
  */
 
-const debug = require('debug')('app');
-const upload = require('../lib/uploader');
-
-import auth from '../controllers/auth';
-
-
+var debug = require('debug')('app');
+var upload = require('../lib/uploader');
 
 // expose routes to the server.
 exports.configure = function configure(app) {
 
-  app.post('/auth/login', auth.login);
-
-
-  
+  app.post('/auth/login', _auth2.default.login);
 };
