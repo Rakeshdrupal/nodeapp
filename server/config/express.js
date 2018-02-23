@@ -84,6 +84,7 @@ exports.configure = function configure(app, passport, passportStrategy) {
   // session does not exists
 
   app.use((req, res, next) => {
+    console.log('Path of incoming request', req.path);
     next();
     // if (_.isUndefined(req.session.user) && !within(req.path, publicRoutes)) {
     // debug(`Rejecting unauthorized access to ${req.path} from ${req.ip}`);

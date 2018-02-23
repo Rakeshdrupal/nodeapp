@@ -17,10 +17,12 @@ import passport from 'passport';
 const LocalStrategy   = require('passport-local').Strategy;
 
 const SERVER_SECRET = 'ohgodpleasenobug';
+const db = require('./lib/db');
 //Configure passport middleware
-require('./config/passport')(passport,LocalStrategy);
+require('./config/passport')(passport,LocalStrategy,db);
 
 const app = express();
+const debug = require('debug')('app');
 const port = process.env.PORT;
 const mode = process.env.NODE_ENV;
 // Configure application middleware stack, inject authentication session
@@ -39,7 +41,7 @@ app.server = http
 
 // ensure the process terminates gracefully when an error occurs.
 process.on('uncaughtException', (e) => {
-  debug('process.onUncaughException: %o', e);
+//  debug('process.onUncaughException: %o', e);
   process.exit(1);
 });
 
